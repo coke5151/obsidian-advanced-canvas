@@ -1,5 +1,6 @@
 import { Menu } from "obsidian"
 import { Canvas, CanvasNode } from "src/@types/Canvas"
+import { CanvasTextNodeData } from "src/@types/AdvancedJsonCanvas"
 import { FileNameModal } from "src/utils/modal-helper"
 import CanvasExtension from "./canvas-extension"
 
@@ -9,7 +10,7 @@ export default class DragToFileCanvasExtension extends CanvasExtension {
   init() {
     // Listen for newly created text nodes and offer to convert to file
     this.plugin.registerEvent(this.plugin.app.workspace.on(
-      'advanced-canvas:node-created',
+      'advanced-canvas:node-created' as any,
       (canvas: Canvas, node: CanvasNode) => this.onNodeCreated(canvas, node)
     ))
 
@@ -21,13 +22,13 @@ export default class DragToFileCanvasExtension extends CanvasExtension {
   }
 
   private onNodeCreated(canvas: Canvas, node: CanvasNode) {
-    const nodeData = node.getData()
+    const nodeData = node.getData() as CanvasTextNodeData
     
     // Only handle text nodes with content (likely dragged from file node)
     if (nodeData.type !== 'text') return
     if (!this.plugin.settings.getSetting('autoConvertDraggedTextToFile')) return
     
-    const textContent = (nodeData as any).text as string | undefined
+    const textContent = nodeData.text
     if (!textContent || textContent.trim().length === 0) return
 
     // Auto-convert to file if setting is enabled
@@ -35,10 +36,10 @@ export default class DragToFileCanvasExtension extends CanvasExtension {
   }
 
   private addConvertToFileOption(menu: Menu, node: CanvasNode) {
-    const nodeData = node.getData()
+    const nodeData = node.getData() as CanvasTextNodeData
     if (nodeData.type !== 'text') return
 
-    const textContent = (nodeData as any).text as string | undefined
+    const textContent = nodeData.text
     if (!textContent) return
 
     menu.addItem((item) =>
@@ -53,7 +54,7 @@ export default class DragToFileCanvasExtension extends CanvasExtension {
     const nodeData = node.getData()
 
     // Get target folder path
-    const canvasSettings = this.plugin.app.internalPlugins.plugins.canvas.instance.options
+    const canvasSettings = (this.plugin.app as any).internalPlugins.plugins.canvas.instance.options
     const defaultNewFileLocation = canvasSettings.newFileLocation
     let targetFolderPath = this.plugin.app.vault.getRoot().path
     if (defaultNewFileLocation === 'current') {

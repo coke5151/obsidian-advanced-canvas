@@ -17,7 +17,7 @@ export default class InputModeCanvasExtension extends CanvasExtension {
 
     // Add control button when canvas changes
     this.plugin.registerEvent(this.plugin.app.workspace.on(
-      'advanced-canvas:canvas-changed',
+      'advanced-canvas:canvas-changed' as any,
       (canvas: Canvas) => this.addInputModeButton(canvas)
     ))
   }
@@ -54,16 +54,13 @@ export default class InputModeCanvasExtension extends CanvasExtension {
       id: 'input-mode-toggle',
       label: this.currentMode === 'mouse' ? 'Mouse mode (scroll = zoom)' : 'Touchpad mode (scroll = pan)',
       icon: this.currentMode === 'mouse' ? 'mouse' : 'tablet',
-      callback: () => this.toggleMode(canvas, button)
+      callback: () => this.toggleMode(button)
     })
 
     CanvasHelper.addControlMenuButton(settingsContainer, button)
   }
 
-  private toggleMode(canvas: Canvas, button: HTMLElement) {
-    // Unused parameter canvas kept for potential future use
-    void canvas
-
+  private toggleMode(button: HTMLElement) {
     this.currentMode = this.currentMode === 'mouse' ? 'touchpad' : 'mouse'
     
     // Update button appearance

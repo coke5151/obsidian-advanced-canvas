@@ -1,13 +1,13 @@
-import AdvancedCanvasPlugin from "src/main"
-import { AdvancedCanvasPluginSettingsValues } from "src/settings"
+import HeptabaseLikeCanvasPlugin from "src/main"
+import { HeptabaseLikeCanvasPluginSettingsValues } from "src/settings"
 
 export default abstract class CanvasExtension {
-  plugin: AdvancedCanvasPlugin
+  plugin: HeptabaseLikeCanvasPlugin
 
-  abstract isEnabled(): boolean | keyof AdvancedCanvasPluginSettingsValues
+  abstract isEnabled(): boolean | keyof HeptabaseLikeCanvasPluginSettingsValues
   abstract init(): void
 
-  constructor(plugin: AdvancedCanvasPlugin) {
+  constructor(plugin: HeptabaseLikeCanvasPlugin) {
     this.plugin = plugin
 
     const isEnabled = this.isEnabled()
