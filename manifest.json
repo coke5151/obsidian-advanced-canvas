@@ -1,11 +1,10 @@
 {
-  "id": "advanced-canvas",
-  "name": "Advanced Canvas",
-  "version": "5.6.5",
+  "id": "heptabase-like-canvas",
+  "name": "Heptabase-like Canvas",
+  "version": "1.0.0",
   "minAppVersion": "1.1.0",
-  "description": "Supercharge your canvas experience! Create presentations, flowcharts and more!",
-  "author": "Developer-Mike",
-  "authorUrl": "https://github.com/Developer-Mike",
-  "fundingUrl": "https://ko-fi.com/X8X27IA08",
+  "description": "Supercharge your canvas experience with Heptabase-like features! Input mode toggle, drag text to file, delete file from context menu, and more.",
+  "author": "coke5151",
+  "authorUrl": "https://github.com/coke5151",
   "isDesktopOnly": false
 }

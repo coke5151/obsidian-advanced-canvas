@@ -110,6 +110,14 @@ export interface AdvancedCanvasPluginSettingsValues {
 
   edgeSelectionEnabled: boolean
   selectEdgeByDirection: boolean
+
+  inputModeFeatureEnabled: boolean
+  defaultInputMode: 'mouse' | 'touchpad'
+
+  dragToFileFeatureEnabled: boolean
+  autoConvertDraggedTextToFile: boolean
+
+  deleteFileFromContextMenuEnabled: boolean
 }
 
 export const DEFAULT_SETTINGS_VALUES: AdvancedCanvasPluginSettingsValues = {
@@ -207,6 +215,14 @@ export const DEFAULT_SETTINGS_VALUES: AdvancedCanvasPluginSettingsValues = {
 
   edgeSelectionEnabled: false,
   selectEdgeByDirection: false,
+
+  inputModeFeatureEnabled: true,
+  defaultInputMode: 'mouse',
+
+  dragToFileFeatureEnabled: true,
+  autoConvertDraggedTextToFile: false,
+
+  deleteFileFromContextMenuEnabled: true,
 }
 
 export const SETTINGS = {
@@ -637,6 +653,37 @@ export const SETTINGS = {
     label: 'Focus mode',
     description: 'Focus on a single node and blur all other nodes.',
     infoSection: 'focus-mode',
+    children: { }
+  },
+  inputModeFeatureEnabled: {
+    label: 'Input mode toggle',
+    description: 'Toggle between Mouse mode (scroll = zoom) and Touchpad mode (scroll = pan).',
+    children: {
+      defaultInputMode: {
+        label: 'Default input mode',
+        description: 'The default input mode when opening a canvas.',
+        type: 'dropdown',
+        options: {
+          'mouse': 'Mouse (scroll = zoom)',
+          'touchpad': 'Touchpad (scroll = pan)'
+        }
+      } as DropdownSetting
+    }
+  },
+  dragToFileFeatureEnabled: {
+    label: 'Drag text to file',
+    description: 'Convert dragged text nodes to files via context menu or automatically.',
+    children: {
+      autoConvertDraggedTextToFile: {
+        label: 'Auto-convert dragged text to file',
+        description: 'When enabled, text dragged from a file node will automatically prompt to create a new file.',
+        type: 'boolean'
+      }
+    }
+  },
+  deleteFileFromContextMenuEnabled: {
+    label: 'Delete file from context menu',
+    description: 'Add a "Delete file" option to file node context menu to permanently delete the file.',
     children: { }
   },
 } as const satisfies {

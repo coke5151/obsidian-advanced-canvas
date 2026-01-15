@@ -45,6 +45,9 @@ import EdgeSelectionCanvasExtension from './canvas-extensions/edge-selection-can
 import ExportCanvasExtension from './canvas-extensions/export-canvas-extension'
 import FloatingEdgeCanvasExtension from './canvas-extensions/floating-edge-canvas-extension'
 import EdgeHighlightCanvasExtension from './canvas-extensions/edge-highlight-canvas-extension'
+import InputModeCanvasExtension from './canvas-extensions/input-mode-canvas-extension'
+import DragToFileCanvasExtension from './canvas-extensions/drag-to-file-canvas-extension'
+import DeleteFileCanvasExtension from './canvas-extensions/delete-file-canvas-extension'
 
 // Advanced Styles
 import NodeStylesExtension from './canvas-extensions/advanced-styles/node-styles'
@@ -103,6 +106,9 @@ const CANVAS_EXTENSIONS: typeof CanvasExtension[] = [
   FocusModeCanvasExtension,
   EncapsulateCanvasExtension,
   EdgeSelectionCanvasExtension,
+  InputModeCanvasExtension,
+  DragToFileCanvasExtension,
+  DeleteFileCanvasExtension,
 ]
 
 export default class AdvancedCanvasPlugin extends Plugin {
